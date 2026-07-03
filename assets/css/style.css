@@ -1,0 +1,1084 @@
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO GLOBAL (SOPORTE MODO CLARO / OSCURO)
+   ========================================================================== */
+:root {
+    /* --- MODO CLARO (POR DEFECTO) --- */
+    --bg-body: #ffffff;
+    --bg-navbar: rgba(255, 255, 255, 0.98);
+    --border-color: #eef2f6;
+    --text-main: #2b333e;
+    --text-muted: #626e7d;
+    --bg-section-light: #f7f9fc;
+    --bg-card: #ffffff;
+    
+    /* --- COLORES FIJOS PREMIUM (Identidad de marca Rialto) --- */
+    --bg-dark-fixed: #07111e;   /* Fondos oscuros fijos (Hero y Footer) */
+    --accent: #bda16d;          /* Dorado sutil institucional */
+    --white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- INTERRUPTOR DE MODO OSCURO GLOBAL --- */
+[data-theme="dark"] {
+    --bg-body: #0b1523;         /* Fondo azul oscuro profundo */
+    --bg-navbar: rgba(11, 21, 35, 0.98);
+    --border-color: #1e2d42;
+    --text-main: #f4f6f9;       /* Texto claro de alta lectura */
+    --text-muted: #a0aec0;
+    --bg-section-light: #0f2136;
+    --bg-card: #12253f;         /* Tarjetas con contraste elegante */
+}
+
+/* ==========================================================================
+   2. RESET GENERAL Y CONFIGURACIÓN ESTRUCTURAL (FIX DEL FOOTER)
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Previene desajustes por paddings internos */
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body { 
+    font-family: 'Inter', sans-serif; 
+    color: var(--text-main); 
+    background-color: var(--bg-body); 
+    line-height: 1.7; 
+    -webkit-font-smoothing: antialiased;
+    
+    /* Flexbox en el body para obligar al footer a pegarse abajo siempre */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ACELERACIÓN POR HARDWARE PARA EL INTERCAMBIO DE LAYOUT (0ms JANK) */
+main { 
+    flex: 1; /* El contenedor principal empuja al footer en páginas cortas */
+    opacity: 1;
+    will-change: opacity; /* Prepara a la tarjeta gráfica para un cambio inmediato */
+    transition: opacity 0.12s ease-in-out; /* Duración exacta para absorber parpadeos */
+} 
+
+/* Estado de transición ultrarrápido entre páginas */
+main.layout-switching {
+    opacity: 0;
+}
+
+.container { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 24px; 
+}
+
+/* ==========================================================================
+   3. CABECERA Y ENLACES (BOTÓN DE MODO CLARO/OSCURO A LA DERECHA)
+   ========================================================================== */
+.navbar { 
+    background-color: var(--bg-navbar); 
+    backdrop-filter: blur(8px); 
+    border-bottom: 1px solid var(--border-color); 
+    position: sticky; 
+    top: 0; 
+    z-index: 1000; 
+    padding: 16px 0; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo { 
+    font-weight: 700; 
+    font-size: 1.25rem; 
+    letter-spacing: 1px; 
+    color: var(--text-main); 
+    text-decoration: none; 
+}
+
+.logo-accent { 
+    color: var(--accent); 
+    font-weight: 400; 
+}
+
+/* Agrupación derecha para alinear menú y botones juntos sin centrar el tema */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 32px; 
+}
+
+.nav-links a { 
+    text-decoration: none; 
+    color: var(--text-main); 
+    font-weight: 500; 
+    font-size: 0.95rem; 
+    transition: var(--transition); 
+    padding: 8px 0; 
+}
+
+.nav-links a:hover, 
+.nav-links a.active { 
+    color: var(--accent); 
+}
+
+/* BOTÓN DE MODO DE COLOR MINIMALISTA */
+.theme-toggle-btn {
+    background: none; 
+    border: none;
+    font-size: 1.25rem; 
+    color: var(--text-main);
+    cursor: pointer; 
+    padding: 8px;
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    transition: var(--transition); 
+    border-radius: 50%;
+}
+
+.theme-toggle-btn:hover { 
+    background-color: var(--bg-section-light); 
+    color: var(--accent); 
+}
+
+/* MENÚ HAMBURGUESA MÓVIL */
+.menu-toggle { 
+    background: none; 
+    border: none; 
+    font-size: 1.8rem; 
+    color: var(--text-main); 
+    cursor: pointer; 
+    display: none; 
+}
+
+/* ==========================================================================
+   4. COMPONENTE HERO (SECCIÓN PRINCIPAL)
+   ========================================================================== */
+.hero-section { 
+    background-color: var(--bg-dark-fixed); 
+    color: var(--white); 
+    padding: 75px 0 75px 0; /* Reducimos el espacio inferior a la mitad */
+}
+
+.hero-content { 
+    max-width: 800px; 
+}
+
+.hero-tagline { 
+    color: var(--accent); 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    letter-spacing: 2px; 
+    display: inline-block; 
+    margin-bottom: 16px; 
+}
+
+.hero-section h1 { 
+    font-size: 3rem; 
+    line-height: 1.2; 
+    font-weight: 700; 
+    margin-bottom: 24px; 
+}
+
+.hero-section p { 
+    font-size: 1.15rem; 
+    color: #a0aec0; 
+    margin-bottom: 40px; 
+    font-weight: 300; 
+}
+
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   5. BOTONES CORPORATIVOS Y ENLACES (CON WHATSAPP ESTÁTICO)
+   ========================================================================== */
+.btn { 
+    display: inline-block; 
+    text-decoration: none; 
+    padding: 14px 28px; 
+    font-weight: 600; 
+    font-size: 0.95rem; 
+    border-radius: 4px; 
+    transition: var(--transition); 
+    border: none; 
+    text-align: center; 
+}
+
+.btn-primary { 
+    background-color: var(--accent); 
+    color: var(--bg-dark-fixed); 
+}
+
+.btn-primary:hover { 
+    background-color: var(--white); 
+    transform: translateY(-2px); 
+}
+
+.btn-secondary { 
+    background-color: transparent; 
+    color: var(--white); 
+    border: 1px solid rgba(255,255,255,0.2); 
+}
+
+.btn-secondary:hover { 
+    border-color: var(--white); 
+    background-color: rgba(255,255,255,0.05); 
+}
+
+/* BOTÓN WHATSAPP ESTÁTICO EN LÍNEA */
+.btn-whatsapp { 
+    background-color: #25d366; 
+    color: var(--white); 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 8px; 
+}
+
+.btn-whatsapp:hover { 
+    background-color: #1ebc59; 
+    color: var(--white); 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); 
+}
+
+/* ==========================================================================
+   6. SECCIÓN Y ESTRUCTURA DEL SLIDER DE SERVICIOS (CUADROS / TARJETAS FLUIDAS)
+   ========================================================================== */
+.services-section { 
+    padding: 100px 0; 
+}
+
+.services-grid {
+    align-items: start; /* Previene deformaciones de tamaño entre cards */
+}
+
+/* Envoltura deslizable que aloja la rejilla */
+.slider-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;  /* Oculta scroll en Firefox */
+    -ms-overflow-style: none; /* Oculta scroll en IE */
+}
+
+.slider-wrapper::-webkit-scrollbar {
+    display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+.services-slider-grid {
+    display: flex;
+    gap: 32px;
+    width: max-content;
+}
+
+/* Tarjeta individual adaptada al comportamiento slider */
+.service-card-slide {
+    width: 360px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 40px 32px;
+    border-radius: 6px;
+    scroll-snap-align: start;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.service-card-slide:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+}
+
+.service-icon { 
+    font-size: 2.5rem; 
+    color: var(--accent); 
+    margin-bottom: 24px; 
+}
+
+.service-card-slide h3 { 
+    font-size: 1.35rem; 
+    color: var(--text-main); 
+    margin-bottom: 16px; 
+}
+
+/* Listados internos de viñetas en tarjetas de servicios */
+.service-list {
+    list-style: none;
+    margin-top: 16px;
+    padding: 0;
+}
+
+.service-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    text-align: left;
+}
+
+.service-list li i {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--accent);
+    font-size: 1.1rem;
+}
+
+/* BOTONES DE NAVEGACIÓN (PLOMO APENAS NOTABLE - CON MARGEN DE SEPARACIÓN CORREGIDO) */
+.slider-arrow {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #9ca3af;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    z-index: 10;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .slider-arrow {
+    border-color: #374151;
+    color: #4b5563;
+}
+
+.slider-arrow:hover {
+    background-color: var(--bg-section-light);
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Posicionamiento más separado para que no colisionen visualmente con los cuadros */
+.arrow-left { 
+    left: -45px; 
+}
+
+.arrow-right { 
+    right: -45px; 
+}
+
+/* ==========================================================================
+   7. SECCIÓN ¿QUIÉNES SOMOS? (HISTORIA, MISIÓN Y VISIÓN CON ICONO ADYACENTE)
+   ========================================================================== */
+.about-section {
+    padding: 100px 0;
+    background-color: var(--bg-body);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.about-text h2 {
+    font-size: 2.25rem;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    margin-bottom: 24px;
+    border-radius: 2px;
+}
+
+.about-text p {
+    margin-bottom: 16px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.highlight-text {
+    border-left: 4px solid var(--accent);
+    font-weight: 500;
+    color: var(--text-main) !important;
+    margin-top: 24px;
+    background-color: var(--bg-section-light);
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    display: block;
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .about-image img {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    opacity: 0.85;
+}
+
+/* Bloque Misión/Visión */
+.mv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.mv-card {
+    background-color: var(--bg-section-light);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.mv-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* CABECERA CON ICONO AL COSTADO DEL SUBTÍTULO */
+.mv-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.mv-title-icon {
+    font-size: 1.85rem;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mv-card h3 {
+    margin-bottom: 0 !important;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.mv-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   8. SECCIÓN CLIENTES Y MÉTRICAS CORPORATIVAS
+   ========================================================================== */
+.clients-section { 
+    padding: 100px 0; 
+    background-color: var(--bg-section-light); 
+    transition: background-color 0.3s ease; 
+}
+
+.metrics-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 24px; 
+    text-align: center; 
+}
+
+.metric-number { 
+    display: block; 
+    font-size: 3.5rem; 
+    font-weight: 700; 
+    color: var(--text-main); 
+    margin-bottom: 8px; 
+}
+
+.metric-label { 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    color: var(--text-muted); 
+}
+
+/* ==========================================================================
+   9. CARRUSEL CÍCLICO INFINITO AUTOMÁTICO PARA LOGOS DE CLIENTES
+   ========================================================================== */
+.logos-section {
+    padding: 80px 0;
+    background-color: var(--bg-body);
+    overflow: hidden;
+}
+
+.logo-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 30px 0;
+    background-color: var(--bg-section-light);
+    display: flex;
+    align-items: center;
+}
+
+/* Difuminado minimalista en los extremos izquierdo y derecho */
+.logo-slider::before,
+.logo-slider::after {
+    content: "";
+    height: 100%;
+    position: absolute;
+    width: 200px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-slider::before {
+    left: 0;
+    top: 0;
+    background: linear-gradient(to right, var(--bg-body), transparent);
+}
+
+.logo-slider::after {
+    right: 0;
+    top: 0;
+    background: linear-gradient(to left, var(--bg-body), transparent);
+}
+
+/* Riel interno que ejecuta la animación en bucle continuo */
+.logo-slider-track {
+    display: flex;
+    align-items: center;
+    width: calc(200px * 12); 
+    animation: scrollLogos 28s linear infinite;
+}
+
+.logo-slider-track:hover {
+    animation-play-state: paused; /* Pausa el movimiento al pasar el mouse */
+}
+
+.logo-slide {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.logo-slide img {
+    max-width: 130px;
+    max-height: 55px;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(50%);
+    transition: var(--transition);
+}
+
+.logo-slide img:hover {
+    filter: grayscale(0%) opacity(100%);
+}
+
+/* Adaptación automática para logos en modo oscuro */
+[data-theme="dark"] .logo-slide img {
+    filter: grayscale(100%) opacity(40%) brightness(1.5);
+}
+[data-theme="dark"] .logo-slide img:hover {
+    filter: grayscale(0%) opacity(100%) brightness(1);
+}
+
+@keyframes scrollLogos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-200px * 6)); } /* Se desplaza exactamente la mitad */
+}
+
+/* ==========================================================================
+   10. SECCIÓN CONTACTO Y FORMULARIO INTEGRAL PROTEGIDO
+   ========================================================================== */
+.contact-section { 
+    padding: 100px 0; 
+}
+
+.contact-container { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 64px; 
+}
+
+.contact-info-block h2 { 
+    font-size: 2.25rem; 
+    color: var(--text-main); 
+    margin-bottom: 16px; 
+}
+
+.contact-info-block p { 
+    color: var(--text-muted); 
+    margin-bottom: 32px;
+}
+
+.info-details { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 24px; 
+}
+
+.info-item { 
+    display: flex; 
+    gap: 20px; 
+    align-items: center; 
+}
+
+.info-item i { 
+    font-size: 1.8rem; 
+    color: var(--accent); 
+    background: var(--bg-section-light); 
+    padding: 12px; 
+    border-radius: 50%; 
+}
+
+.info-item h4 { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+}
+
+.info-item p, 
+.info-item a { 
+    text-decoration: none; 
+    color: var(--text-main); 
+    font-weight: 500; 
+}
+
+/* DISEÑO DEL FORMULARIO EVITANDO DESPLAZAMIENTOS EXCEPCIONALES */
+.minimal-form { 
+    background-color: var(--bg-section-light); 
+    padding: 40px; 
+    border-radius: 8px; 
+    transition: background-color 0.3s ease; 
+    width: 100%;
+}
+
+.form-group { 
+    margin-bottom: 20px; 
+    display: block;
+    width: 100%;
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    margin-bottom: 8px; 
+    color: var(--text-main); 
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea { 
+    width: 100%; 
+    display: block;
+    padding: 14px; 
+    border: 1px solid var(--border-color); 
+    background: var(--bg-card); 
+    font-family: inherit; 
+    border-radius: 4px; 
+    color: var(--text-main);
+    transition: var(--transition);
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus { 
+    outline: none; 
+    border-color: var(--accent); 
+}
+
+.btn-submit { 
+    background-color: var(--bg-dark-fixed); 
+    color: var(--white); 
+    width: 100%; 
+    padding: 16px; 
+    font-weight: 700; 
+    display: block;
+}
+
+.btn-submit:hover { 
+    background-color: var(--accent); 
+    color: var(--bg-dark-fixed); 
+}
+
+/* ==========================================================================
+   11. PIE DE PÁGINA (CRÉDITOS REDIRECCIONADOS A TECNO INSANE)
+   ========================================================================== */
+.main-footer { 
+    background-color: var(--bg-dark-fixed); 
+    color: #748396; 
+    padding: 40px 0; 
+    border-top: 1px solid rgba(255,255,255,0.05); 
+}
+
+.footer-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.footer-credits a { 
+    color: var(--accent); 
+    text-decoration: none; 
+    font-weight: 600; 
+    transition: var(--transition); 
+}
+
+.footer-credits a:hover { 
+    color: var(--white); 
+    text-decoration: underline; 
+}
+
+/* ==========================================================================
+   12. ACCESO DIRECTO FLOTANTE WHATSAPP
+   ========================================================================== */
+.whatsapp-float { 
+    position: fixed; 
+    bottom: 32px; 
+    right: 32px; 
+    background-color: #25d366; 
+    color: var(--white); 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 2.2rem; 
+    box-shadow: 0 8px 24px rgba(37,211,102,0.3); 
+    z-index: 9999; 
+    text-decoration: none; 
+    transition: var(--transition); 
+}
+
+.whatsapp-float:hover { 
+    transform: scale(1.1); 
+}
+
+/* ==========================================================================
+   13. MEDIA QUERIES (OPTIMIZACIÓN Y ADAPTACIÓN RESPONSIVA EN MÓVILES)
+   ========================================================================== */
+@media (max-width: 1240px) {
+    .slider-arrow { 
+        display: none; /* En pantallas táctiles se prioriza el arrastre nativo manual con el dedo */
+    } 
+    .arrow-left { left: 0; }
+    .arrow-right { right: 0; }
+}
+
+@media (max-width: 992px) {
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    .about-image { 
+        order: -1; /* Posiciona la foto corporativa arriba en celulares */
+    } 
+}
+
+@media (max-width: 768px) {
+    .menu-toggle { 
+        display: block; 
+    }
+    
+    .nav-right {
+        gap: 12px;
+    }
+
+    .nav-menu {
+        display: none; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%;
+        background-color: var(--bg-body); 
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        border-top: 1px solid var(--border-color); 
+        padding: 20px;
+    }
+    
+    .nav-menu.active { 
+        display: block; 
+    }
+    
+    .nav-links { 
+        flex-direction: column; 
+        gap: 16px; 
+        text-align: center; 
+    }
+    
+    .hero-section h1 { 
+        font-size: 2.2rem; 
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-actions .btn { 
+        display: block; 
+        width: 100%; 
+    }
+    
+    .service-card-slide {
+        width: 290px;
+        padding: 32px 24px;
+    }
+    
+    .services-slider-grid {
+        gap: 16px;
+    }
+    
+    .logo-slider::before,
+    .logo-slider::after {
+        width: 80px; /* Difuminado más angosto en pantallas móviles */
+    }
+    .logo-slide {
+        width: 160px;
+        padding: 0 20px;
+    }
+    @keyframes scrollLogos {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-160px * 6)); }
+    }
+
+    .contact-container { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    
+    .minimal-form { 
+        padding: 24px; 
+    }
+    
+    .footer-content { 
+        flex-direction: column; 
+        gap: 12px; 
+        text-align: center; 
+    }
+    
+}
+
+/* ==========================================================================
+   CORRECCIÓN: FORZAR CENTRADO ABSOLUTO DE LOS TÍTULOS DE SECCIÓN
+   ========================================================================== */
+.section-header {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.section-header h2, .section-header p {
+    text-align: center !important;
+    width: 100%;
+}
+
+/* ==========================================================================
+   NUEVO: CARRUSEL DE LOGOS TAMAÑO GRANDE (INICIO / EFECTO CILINDRO)
+   ========================================================================== */
+.home-logos-section {
+    background-color: var(--bg-body);
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.home-logos-title {
+    text-align: center;
+    font-size: 1.35rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.logo-slider-cylinder {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* Sombras en los bordes para crear la ilusión de profundidad (cilindro) */
+.logo-slider-cylinder::before,
+.logo-slider-cylinder::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.logo-slider-cylinder::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-body) 0%, transparent 100%);
+}
+
+.logo-slider-cylinder::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-body) 0%, transparent 100%);
+}
+
+/* Riel que contiene las imágenes girando */
+.logo-slider-track-cylinder {
+    display: flex;
+    align-items: center;
+    /* 300px por logo x 12 logos (6 originales + 6 duplicados) */
+    width: calc(300px * 12); 
+    /* Animación calculada: 30 segundos en dar la vuelta (5 seg por cada logo) */
+    animation: scrollCylinder 30s linear infinite; 
+}
+
+/* Cuadro individual de cada logo en tamaño GRANDE */
+.logo-slide-large {
+    width: 300px; 
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-slide-large img {
+    max-width: 100%;
+    max-height: 90px; /* Tamaño grande para llamar la atención */
+    object-fit: contain;
+    filter: grayscale(100%) opacity(60%);
+    transition: var(--transition);
+}
+
+/* Al pasar el mouse, el logo se pone a color y se agranda ligeramente */
+.logo-slide-large img:hover {
+    filter: grayscale(0%) opacity(100%);
+    transform: scale(1.08);
+}
+
+/* Ajuste automático para modo oscuro */
+[data-theme="dark"] .logo-slide-large img {
+    filter: grayscale(100%) opacity(40%) brightness(2);
+}
+[data-theme="dark"] .logo-slide-large img:hover {
+    filter: grayscale(0%) opacity(100%) brightness(1);
+}
+
+/* Animación infinita fluida */
+@keyframes scrollCylinder {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-300px * 6)); } /* Se desplaza la primera mitad exacta */
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+    .logo-slider-cylinder::before,
+    .logo-slider-cylinder::after { width: 60px; }
+    
+    .logo-slide-large { width: 180px; padding: 0 20px; }
+    .logo-slide-large img { max-height: 60px; }
+    .logo-slider-track-cylinder { width: calc(180px * 12); }
+    
+    @keyframes scrollCylinder {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-180px * 6)); }
+    }
+}
+
+/* ==========================================================================
+   CORRECCIÓN FINAL: REDUCIR AL MÁXIMO EL ESPACIO DEBAJO DE LOS LOGOS
+   ========================================================================== */
+
+/* 1. Eliminamos el espacio inferior de la sección de logos */
+.home-logos-section, 
+.logos-section {
+    padding-top: 30px !important;
+    padding-bottom: 0 !important;
+}
+
+/* 2. Forzamos a que la cinta no se estire hacia abajo */
+.logo-slider, 
+.logo-slider-cylinder {
+    padding-top: 10px !important;
+    padding-bottom: 20px !important; /* Solo 20px de respiro antes del color oscuro del footer */
+    margin-bottom: 0 !important;
+    height: auto !important;
+    align-items: center !important;
+}
+
+/* 3. Limitamos la altura máxima de las cajas de los logos */
+.logo-slide-large, 
+.logo-slide {
+    height: 90px !important; /* Corta cualquier espacio sobrante que tenga la imagen JPG */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+/* ==========================================================================
+   CORRECCIÓN: ALINEACIÓN VERTICAL PERFECTA EN LOS ÍTEMS DE CONTACTO
+   ========================================================================== */
+.info-item {
+    align-items: center !important; /* Asegura el centrado vertical */
+}
+
+.info-item h4 {
+    margin-bottom: 2px !important; /* Pequeño respiro entre el título y el dato */
+}
+
+.info-item p {
+    margin-bottom: 0 !important; /* Elimina el margen invisible que empujaba el texto hacia arriba */
+    line-height: 1.4 !important; /* Ajusta el interlineado para que se vea más compacto */
+}
+
+.info-details {
+    gap: 25px !important; /* Aumentamos el espacio de 24px a 40px */
+}
+
+/* ==========================================================================
+   CORRECCIÓN: TEXTAREA DE CONTACTO (ANCHO PERFECTO Y AUTO-ALTURA)
+   ========================================================================== */
+.form-group textarea {
+    width: 100% !important;       /* Fuerza a que respete el ancho del formulario */
+    max-width: 100% !important;   /* Evita que se desborde hacia la derecha */
+    min-height: 150px;            /* Altura inicial por defecto */
+    resize: none !important;      /* Elimina la flecha manual de estiramiento */
+    overflow-y: hidden;           /* Oculta la barra de scroll vertical fea */
+    box-sizing: border-box;
+}
