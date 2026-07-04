@@ -110,6 +110,28 @@ main.layout-switching {
     font-weight: 400; 
 }
 
+/* ==========================================================================
+   MODIFICACIÓN: LOGOS A COLOR Y ZOOM AL PASAR EL MOUSE
+   ========================================================================== */
+
+/* 1. Anulamos el efecto gris y preparamos la animación fluida */
+.logo-slide-large img {
+    filter: none !important; 
+    -webkit-filter: grayscale(0) !important; 
+    opacity: 1 !important; 
+    
+    /* Animación de 0.4 segundos con un ligero efecto de rebote premium */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* 2. Ampliamos la imagen al pasar el cursor por encima */
+.logo-slide-large:hover img {
+    transform: scale(1.40) !important; /* Amplía la imagen un 35% */
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
+}
+
 /* Agrupación derecha para alinear menú y botones juntos sin centrar el tema */
 .nav-right {
     display: flex;
@@ -1083,3 +1105,4 @@ main.layout-switching {
     overflow-y: hidden;           /* Oculta la barra de scroll vertical fea */
     box-sizing: border-box;
 }
+
