@@ -96,7 +96,8 @@ main.layout-switching {
     align-items: center; 
 }
 
-.logo { 
+.logo {
+    width: 250px;
     font-weight: 700; 
     font-size: 1.25rem; 
     letter-spacing: 1px; 
