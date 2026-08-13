@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
     <link rel="stylesheet" href="assets/css/style.css">
     <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
 </head>
@@ -25,8 +24,9 @@
             <div class="nav-right">
                 <nav class="nav-menu" id="navMenu">
                     <ul class="nav-links">
-                        <li><a href="index.html" class="active">Inicio</a></li>
-                        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="quienes-somos.html" class="active">¿Quiénes Somos?</a></li>
+                        <li><a href="clientes.html" class="active">Clientes</a></li>
                         <li><a href="servicios.html">Servicios</a></li>
                         <li><a href="contacto.html">Contáctenos</a></li>
                     </ul>
@@ -44,6 +44,15 @@
     </header>
 
     <main>
+
+        <section id="inicio" class="hero-slider">
+            <!-- Reemplazar por las fotos de la ciudad -->
+            <div class="slide" style="background-image: url('assets/img/ciudad-fondo.jpg');">
+                <div class="overlay-corporativo">
+                    <h1>Consultoría de Empresas</h1>
+                </div>
+            </div>
+        </section>
         
         <section class="hero-section">
             <div class="container hero-content">
@@ -92,11 +101,11 @@
     </footer>
 
     <a href="https://wa.me/519985420730?text=Hola,%20quisiera%20coordinar%20una%20reunión%20con%20el%20Gerente." 
-        class="btn btn-whatsapp" 
+        class="whatsapp-float" 
         target="_blank" 
-        rel="noopener noreferrer">
-        <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i> 
-        Contactar por WhatsApp
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp">
+        <img src="assets/img/whatsapp-icon.svg" alt="">
     </a>
 
     <script src="assets/js/main.js"></script>

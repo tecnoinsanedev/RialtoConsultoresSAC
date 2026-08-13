@@ -16,6 +16,7 @@
     --accent: #bda16d;          /* Dorado sutil institucional */
     --white: #ffffff;
     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --navbar-height: 88px;
 }
 
 /* --- INTERRUPTOR DE MODO OSCURO GLOBAL --- */
@@ -49,6 +50,7 @@ body {
     background-color: var(--bg-body); 
     line-height: 1.7; 
     -webkit-font-smoothing: antialiased;
+    padding-top: var(--navbar-height);
     
     /* Flexbox en el body para obligar al footer a pegarse abajo siempre */
     display: flex;
@@ -83,8 +85,11 @@ main.layout-switching {
     background-color: var(--bg-navbar); 
     backdrop-filter: blur(8px); 
     border-bottom: 1px solid var(--border-color); 
-    position: sticky; 
-    top: 0; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 1000; 
     padding: 16px 0; 
     transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -790,23 +795,83 @@ main.layout-switching {
     position: fixed; 
     bottom: 32px; 
     right: 32px; 
-    background-color: #25d366; 
-    color: var(--white); 
-    width: 60px; 
-    height: 60px; 
-    border-radius: 50%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 2.2rem; 
-    box-shadow: 0 8px 24px rgba(37,211,102,0.3); 
     z-index: 9999; 
-    text-decoration: none; 
-    transition: var(--transition); 
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+    line-height: 0;
+    text-decoration: none;
+}
+
+.whatsapp-float img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
 
 .whatsapp-float:hover { 
-    transform: scale(1.1); 
+    transform: scale(1.08); 
+    box-shadow: 0 10px 28px rgba(37, 211, 102, 0.55);
+}
+
+/* ==========================================================================
+   12b. GRILLA DE LOGOS — PÁGINA CLIENTES
+   ========================================================================== */
+.clients-page-section {
+    padding: 60px 0 120px;
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.client-logo-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px 20px;
+    background-color: var(--bg-section-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    min-height: 140px;
+    overflow: visible;
+    transition: var(--transition);
+}
+
+.client-logo-card:hover {
+    border-color: rgba(37, 211, 102, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.client-logo-card img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: 100px;
+    object-fit: contain;
+    filter: none;
+    transition: transform 0.35s ease;
+}
+
+.client-logo-card:hover img {
+    transform: scale(1.12);
+}
+
+[data-theme="dark"] .client-logo-card {
+    background-color: var(--bg-section-light);
+}
+
+[data-theme="dark"] .client-logo-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* ==========================================================================
@@ -827,7 +892,12 @@ main.layout-switching {
     }
     .about-image { 
         order: -1; /* Posiciona la foto corporativa arriba en celulares */
-    } 
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -910,6 +980,27 @@ main.layout-switching {
         flex-direction: column; 
         gap: 12px; 
         text-align: center; 
+    }
+
+    .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+    }
+
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .client-logo-card {
+        padding: 20px 16px;
+        min-height: 110px;
+    }
+
+    .client-logo-card img {
+        max-height: 80px;
     }
     
 }
