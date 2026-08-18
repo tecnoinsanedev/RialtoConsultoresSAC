@@ -1328,73 +1328,8 @@ main.layout-switching {
     padding: 100px 0;
 }
 
-.slider-controls {
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-    z-index: 10;
-    display: flex;
-    gap: 16px;
-}
-
-.slider-controls button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--white);
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    backdrop-filter: blur(8px);
-}
-
-.slider-controls button:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    transform: scale(1.1);
-}
-
-.slider-indicators {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    z-index: 10;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.slider-indicators .indicator {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.slider-indicators .indicator.active {
-    background: var(--accent);
-    width: 60px;
-}
-
 @media (max-width: 768px) {
-    .slider-controls {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .slider-indicators {
-        bottom: 20px;
-        left: 20px;
-    }
-
-    .hero-slider .slide::after {
+            .hero-slider .slide::after {
         background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
     }
 }
@@ -1534,73 +1469,8 @@ z-index: 1;
     padding: 100px 0;
 }
 
-.slider-controls {
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
-    z-index: 10;
-    display: flex;
-    gap: 16px;
-}
-
-.slider-controls button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: var(--white);
-    width: 54px;
-    height: 54px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    backdrop-filter: blur(8px);
-}
-
-.slider-controls button:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    transform: scale(1.1);
-}
-
-.slider-indicators {
-    position: absolute;
-    bottom: 50px;
-    left: 50px;
-    z-index: 10;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.slider-indicators .indicator {
-    width: 40px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.slider-indicators .indicator.active {
-    background: var(--accent);
-    width: 60px;
-}
-
 @media (max-width: 768px) {
-    .slider-controls {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .slider-indicators {
-        bottom: 20px;
-        left: 20px;
-    }
-
-    .hero-slider .slide::after {
+            .hero-slider .slide::after {
         background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
     }
 }
