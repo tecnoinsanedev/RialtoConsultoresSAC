@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-width=1.0">
     <meta name="description" content="Rialto Consultores S.A.C. - Gestión empresarial y financiera a medida en Perú.">
     <title>Inicio | Rialto Consultores S.A.C.</title>
-    
+
+    <!-- Fuentes de Google: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Librería de Iconos Phosphor -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Hoja de Estilos Principal -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <script>if(localStorage.getItem('theme')==='dark'){document.documentElement.setAttribute('data-theme','dark');}</script>
 </head>
+
 <body>
 
+    <!-- CABECERA DE NAVEGACIÓN (Navbar) -->
     <header class="navbar">
         <div class="container nav-container">
+            <!-- Logotipo de la empresa -->
             <a href="index.html">
-                <img class="logo" src="assets/img/rialto/Rialto Consultores SAC.png" alt="Logo_Rialto_Consultores_SAC">
+                <img class="logo" src="assets/img/logo_transparente.png" alt="Logo Rialto Consultores SAC">
             </a>
-            
+
+            <!-- Menú de Navegación -->
             <div class="nav-right">
                 <nav class="nav-menu" id="navMenu">
                     <ul class="nav-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="quienes-somos.html" class="active">¿Quiénes Somos?</a></li>
-                        <li><a href="clientes.html" class="active">Clientes</a></li>
+                        <li><a href="index.html" class="active">Inicio</a></li>
+                        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+                        <li><a href="consultores.html">Consultores</a></li>
+                        <li><a href="clientes.html">Clientes</a></li>
                         <li><a href="servicios.html">Servicios</a></li>
                         <li><a href="contacto.html">Contáctenos</a></li>
                     </ul>
                 </nav>
-                
-                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Cambiar modo de color">
-                    <i class="ph ph-moon"></i>
-                </button>
 
+                <!-- Botón de Menú para dispositivos móviles -->
                 <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
                     <i class="ph ph-list"></i>
                 </button>
@@ -43,71 +50,107 @@
         </div>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main>
 
+        <!-- SECCIÓN HERO SLIDER -->
         <section id="inicio" class="hero-slider">
-            <!-- Reemplazar por las fotos de la ciudad -->
-            <div class="slide" style="background-image: url('assets/img/ciudad-fondo.jpg');">
-                <div class="overlay-corporativo">
-                    <h1>Consultoría de Empresas</h1>
-                </div>
-            </div>
-        </section>
-        
-        <section class="hero-section">
-            <div class="container hero-content">
+
+            <!-- Contenido principal superpuesto -->
+            <div class="container hero-content" style="position: relative; z-index: 10;">
                 <span class="hero-tagline">Estrategia Corporativa de Alto Nivel</span>
                 <h1>La salud financiera no es un gasto, es una inversión</h1>
-                <p>Estructuración de esquemas de financiamiento <em>"taylor made"</em> y consultoría estratégica con más de 20 años de trayectoria ejecutiva.</p>
+                <p>Estructuración de esquemas de financiamiento <em>"taylor made"</em> y consultoría estratégica con más
+                    de 20 años de trayectoria ejecutiva.</p>
                 <div class="hero-actions">
-                    <a href="contacto.html" class="btn btn-primary">Iniciar Consultoria</a>
+                    <a href="contacto.html" class="btn btn-primary">Iniciar Consultoría</a>
                     <a href="servicios.html" class="btn btn-secondary">Nuestros Servicios</a>
                 </div>
             </div>
+
+            <!-- Imagen 1 -->
+            <div class="slide active" style="background-image: url('assets/img/slider_1_1787001422435.jpg');"></div>
+            <!-- Imagen 2 -->
+            <div class="slide" style="background-image: url('assets/img/slider_2_1787001492358.jpg');"></div>
+            <!-- Imagen 3 -->
+            <div class="slide" style="background-image: url('assets/img/slider_3_1787001506259.jpg');"></div>
+            <!-- Imagen 4 -->
+            <div class="slide" style="background-image: url('assets/img/slider_4_1787001514450.jpg');"></div>
+            <!-- Imagen 5 -->
+            <div class="slide" style="background-image: url('assets/img/slider_5_1787001595594.jpg');"></div>
+
+            <!-- Controles del slider -->
+            <div class="slider-controls">
+                <button id="prevSlide" aria-label="Anterior"><i class="ph ph-caret-left"></i></button>
+                <button id="nextSlide" aria-label="Siguiente"><i class="ph ph-caret-right"></i></button>
+            </div>
+
+            <!-- Indicadores -->
+            <div class="slider-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
         </section>
 
+        <!-- SECCIÓN DE CLIENTES: Cinta rotativa infinita de logos (Cilindro) -->
         <section class="home-logos-section">
             <div class="container">
                 <h3 class="home-logos-title">Empresas que confían en nuestra gestión</h3>
             </div>
-            
+
+            <!-- Contenedor del Carrusel Cilíndrico de Logos -->
             <div class="logo-slider-cylinder">
                 <div class="logo-slider-track-cylinder">
-                    
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente001.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente002.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente003.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente004.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente005.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente006.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente007.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente008.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente009.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente010.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente011.jpg" alt="Cliente Rialto"></div>
-                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente012.jpg" alt="Cliente Rialto"></div>
-
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente001.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente002.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente003.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente004.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente005.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente006.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente007.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente008.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente009.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente010.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente011.jpg" alt="Cliente Rialto">
+                    </div>
+                    <div class="logo-slide-large"><img src="assets/img/logocliente/cliente012.jpg" alt="Cliente Rialto">
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
+    <!-- PIE DE PÁGINA (Footer) -->
     <footer class="main-footer">
         <div class="container footer-content">
             <p>&copy; 2026 Rialto Consultores S.A.C. Todos los derechos reservados.</p>
-            <p class="footer-credits">Desarrollado por <a href="https://tecnoinsane.net.pe" target="_blank" rel="noopener noreferrer">Tecno Insane</a></p>
+            <p class="footer-credits">Desarrollado por <a href="https://tecnoinsane.net.pe" target="_blank"
+                    rel="noopener noreferrer">Tecno Insane</a></p>
         </div>
     </footer>
 
-    <a href="https://wa.me/519985420730?text=Hola,%20quisiera%20coordinar%20una%20reunión%20con%20el%20Gerente." 
-        class="whatsapp-float" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp">
-        <img src="assets/img/whatsapp-icon.svg" alt="">
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/519985420730?text=Hola,%20quisiera%20coordinar%20una%20reuni%C3%B3n%20con%20Rialto%20Consultores."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <img src="assets/img/whatsapp-logo.png" alt="WhatsApp">
     </a>
 
+    <!-- Script Principal de Lógica Interactiva (SPA, Carruseles, Menú) -->
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
