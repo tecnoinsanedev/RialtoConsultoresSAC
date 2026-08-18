@@ -1,149 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-width=1.0">
-    <meta name="description" content="Servicios especializados de Rialto Consultores S.A.C. - Consultoría empresarial, preventiva, gestión de crisis, asesoría legal y procesos concursales.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-width=1.0" />
+    <meta
+      name="description"
+      content="Servicios especializados de Rialto Consultores S.A.C. - Consultoría empresarial, preventiva, gestión de crisis, asesoría legal y procesos concursales."
+    />
     <title>Servicios | Rialto Consultores S.A.C.</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
 
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
     <header class="navbar">
-        <div class="container nav-container">
-            <a href="index.html">
-                <img class="logo" src="assets/img/logo_transparente.png" alt="Logo Rialto Consultores SAC">
-            </a>
-            
-            <div class="nav-right">
-                <nav class="nav-menu" id="navMenu">
-                    <ul class="nav-links">
-                        <li><a href="index.html">Inicio</a></li>
-                        <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
-                        <li><a href="consultores.html">Consultores</a></li>
-                        <li><a href="clientes.html">Clientes</a></li>
-                        <li><a href="servicios.html" class="active">Servicios</a></li>
-                        <li><a href="contacto.html">Contáctenos</a></li>
-                    </ul>
-                </nav>
+      <div class="container nav-container">
+        <a href="index.html">
+          <img
+            class="logo"
+            src="assets/img/logo_transparente.png"
+            alt="Logo Rialto Consultores SAC"
+          />
+        </a>
 
-                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                    <i class="ph ph-list"></i>
-                </button>
-            </div>
+        <div class="nav-right">
+          <nav class="nav-menu" id="navMenu">
+            <ul class="nav-links">
+              <li><a href="index.html">Inicio</a></li>
+              <li><a href="quienes-somos.html">¿Quiénes Somos?</a></li>
+              <li><a href="consultores.html">Consultores</a></li>
+              <li><a href="clientes.html">Clientes</a></li>
+              <li><a href="servicios.html" class="active">Servicios</a></li>
+              <li><a href="contacto.html">Contáctenos</a></li>
+            </ul>
+          </nav>
+
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+            <i class="ph ph-list"></i>
+          </button>
         </div>
+      </div>
     </header>
 
     <main>
-        <section class="services-section">
-            <div class="container" style="position: relative;">
-                
-                <div class="section-header">
-                    <h2>Portafolio de Servicios</h2>
-                    <p>Soluciones integrales de consultoría estratégica y financiera diseñadas a la medida de su empresa.</p>
+      <section class="services-section">
+        <div class="container" style="position: relative">
+          <div class="section-header">
+            <h2>Portafolio de Servicios</h2>
+            <p>
+              Soluciones integrales de consultoría estratégica y financiera
+              diseñadas a la medida de su empresa.
+            </p>
+          </div>
+
+          <button
+            class="slider-arrow arrow-left"
+            id="slideLeft"
+            aria-label="Desplazar a la izquierda"
+          >
+            <i class="ph ph-caret-left"></i>
+          </button>
+          <button
+            class="slider-arrow arrow-right"
+            id="slideRight"
+            aria-label="Desplazar a la derecha"
+          >
+            <i class="ph ph-caret-right"></i>
+          </button>
+
+          <div class="slider-wrapper">
+            <div class="services-slider-grid" id="servicesSlider">
+              <div class="service-card-slide">
+                <div class="service-icon"><i class="ph ph-buildings"></i></div>
+                <h3>Consultoría para Empresas</h3>
+                <ul class="service-list">
+                  <li>
+                    <i class="ph ph-caret-right"></i> Apoyo a empresas
+                    familiares.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Diagnóstico de la salud
+                    económico financiera.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Diagnóstico estratégico y
+                    operativo.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Corrección de
+                    ineficiencias: Análisis y diseño de procesos.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Implementación de la
+                    Estrategia Comercial.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Coaching Financiero.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Apoyo para sustentar
+                    Proyectos / Ampliaciones ante Instituciones Financieras.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Evaluación integral y
+                    “coaching” del personal.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Valorización de Empresas.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Implementación inmediata
+                    de un plan de ahorros de costos y gastos.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Auditoría
+                    económico-financiera.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="service-card-slide">
+                <div class="service-icon">
+                  <i class="ph ph-shield-check"></i>
                 </div>
-                
-                <button class="slider-arrow arrow-left" id="slideLeft" aria-label="Desplazar a la izquierda">
-                    <i class="ph ph-caret-left"></i>
-                </button>
-                <button class="slider-arrow arrow-right" id="slideRight" aria-label="Desplazar a la derecha">
-                    <i class="ph ph-caret-right"></i>
-                </button>
+                <h3>Consultoría Preventiva</h3>
+                <ul class="service-list">
+                  <li>
+                    <i class="ph ph-caret-right"></i> Diagnósticos para empresas
+                    con potenciales problemas.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Estructuración y
+                    reestructuración de financiamientos en función a las
+                    necesidades de cada empresa.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Estrategia en gestión de
+                    cuentas por cobrar.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Estrategia en gestión de
+                    inventarios.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Rediseño de procesos para
+                    adecuarlos a la nueva realidad.
+                  </li>
+                </ul>
+              </div>
 
-                <div class="slider-wrapper">
-                    <div class="services-slider-grid" id="servicesSlider">
-                        
-                        <div class="service-card-slide">
-                            <div class="service-icon"><i class="ph ph-buildings"></i></div>
-                            <h3>Consultoría para Empresas</h3>
-                            <ul class="service-list">
-                                <li><i class="ph ph-caret-right"></i> Apoyo a empresas familiares.</li>
-                                <li><i class="ph ph-caret-right"></i> Diagnóstico de la salud económico financiera.</li>
-                                <li><i class="ph ph-caret-right"></i> Diagnóstico estratégico y operativo.</li>
-                                <li><i class="ph ph-caret-right"></i> Corrección de ineficiencias: Análisis y diseño de procesos.</li>
-                                <li><i class="ph ph-caret-right"></i> Implementación de la Estrategia Comercial.</li>
-                                <li><i class="ph ph-caret-right"></i> Coaching Financiero.</li>
-                                <li><i class="ph ph-caret-right"></i> Apoyo para sustentar Proyectos / Ampliaciones ante Instituciones Financieras.</li>
-                                <li><i class="ph ph-caret-right"></i> Evaluación integral y “coaching” del personal.</li>
-                                <li><i class="ph ph-caret-right"></i> Valorización de Empresas.</li>
-                                <li><i class="ph ph-caret-right"></i> Implementación inmediata de un plan de ahorros de costos y gastos.</li>
-                                <li><i class="ph ph-caret-right"></i> Auditoría económico-financiera.</li>
-                            </ul>
-                        </div>
-
-                        <div class="service-card-slide">
-                            <div class="service-icon"><i class="ph ph-shield-check"></i></div>
-                            <h3>Consultoría Preventiva</h3>
-                            <ul class="service-list">
-                                <li><i class="ph ph-caret-right"></i> Diagnósticos para empresas con potenciales problemas.</li>
-                                <li><i class="ph ph-caret-right"></i> Estructuración y reestructuración de financiamientos en función a las necesidades de cada empresa.</li>
-                                <li><i class="ph ph-caret-right"></i> Estrategia en gestión de cuentas por cobrar.</li>
-                                <li><i class="ph ph-caret-right"></i> Estrategia en gestión de inventarios.</li>
-                                <li><i class="ph ph-caret-right"></i> Rediseño de procesos para adecuarlos a la nueva realidad.</li>
-                            </ul>
-                        </div>
-
-                        <div class="service-card-slide">
-                            <div class="service-icon"><i class="ph ph-warning-diamond"></i></div>
-                            <h3>Consultoría en Gestión de Crisis</h3>
-                            <ul class="service-list">
-                                <li><i class="ph ph-caret-right"></i> Elaboración del plan de acciones correctivas de emergencia y de corto plazo.</li>
-                                <li><i class="ph ph-caret-right"></i> Coordinación del plan a seguir con los principales acreedores.</li>
-                                <li><i class="ph ph-caret-right"></i> Elaboración del cronograma de pagos por categorías de acreedores que incluya fuentes de financiamiento y premios para acelerar la recuperación de acreencias.</li>
-                                <li><i class="ph ph-caret-right"></i> Gestión, manejo y representación en créditos sindicados.</li>
-                                <li><i class="ph ph-caret-right"></i> Contraloría externa tercerizada.</li>
-                            </ul>
-                        </div>
-
-                        <div class="service-card-slide">
-                            <div class="service-icon"><i class="ph ph-scales"></i></div>
-                            <h3>Asesoría Legal</h3>
-                            <ul class="service-list">
-                                <li><i class="ph ph-caret-right"></i> Asesoría a empresas en temas vinculados a derechos de propiedad intelectual y derecho comercial.</li>
-                                <li><i class="ph ph-caret-right"></i> Apoyo en la creación de empresas, su organización y protección de los derechos de autor y de propiedad Industrial.</li>
-                                <li><i class="ph ph-caret-right"></i> Asesoría para organizar y proteger las marcas y todo signo distintivo que represente a la empresa.</li>
-                            </ul>
-                        </div>
-
-                        <div class="service-card-slide">
-                            <div class="service-icon"><i class="ph ph-handshake"></i></div>
-                            <h3>Consultoría en Procesos Concursales</h3>
-                            <ul class="service-list">
-                                <li><i class="ph ph-caret-right"></i> Asesoría en el diseño de una propuesta a los acreedores en el marco de procesos concursales y su posterior inclusión.</li>
-                                <li><i class="ph ph-caret-right"></i> Elaboración del cronograma de pagos por categorías de acreedores y garantías que incluya fuentes de financiamiento y premios para acelerar la recuperación de acreencias.</li>
-                                <li><i class="ph ph-caret-right"></i> Seguimiento de planes a través de Comités de Caja, Fideicomisos y Juntas de Acreedores.</li>
-                                <li><i class="ph ph-caret-right"></i> Apoyo en el proceso de liquidación de empresas.</li>
-                            </ul>
-                        </div>
-
-                    </div>
+              <div class="service-card-slide">
+                <div class="service-icon">
+                  <i class="ph ph-warning-diamond"></i>
                 </div>
-                
+                <h3>Consultoría en Gestión de Crisis</h3>
+                <ul class="service-list">
+                  <li>
+                    <i class="ph ph-caret-right"></i> Elaboración del plan de
+                    acciones correctivas de emergencia y de corto plazo.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Coordinación del plan a
+                    seguir con los principales acreedores.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Elaboración del cronograma
+                    de pagos por categorías de acreedores que incluya fuentes de
+                    financiamiento y premios para acelerar la recuperación de
+                    acreencias.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Gestión, manejo y
+                    representación en créditos sindicados.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Contraloría externa
+                    tercerizada.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="service-card-slide">
+                <div class="service-icon"><i class="ph ph-scales"></i></div>
+                <h3>Asesoría Legal</h3>
+                <ul class="service-list">
+                  <li>
+                    <i class="ph ph-caret-right"></i> Asesoría a empresas en
+                    temas vinculados a derechos de propiedad intelectual y
+                    derecho comercial.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Apoyo en la creación de
+                    empresas, su organización y protección de los derechos de
+                    autor y de propiedad Industrial.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Asesoría para organizar y
+                    proteger las marcas y todo signo distintivo que represente a
+                    la empresa.
+                  </li>
+                </ul>
+              </div>
+
+              <div class="service-card-slide">
+                <div class="service-icon"><i class="ph ph-handshake"></i></div>
+                <h3>Consultoría en Procesos Concursales</h3>
+                <ul class="service-list">
+                  <li>
+                    <i class="ph ph-caret-right"></i> Asesoría en el diseño de
+                    una propuesta a los acreedores en el marco de procesos
+                    concursales y su posterior inclusión.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Elaboración del cronograma
+                    de pagos por categorías de acreedores y garantías que
+                    incluya fuentes de financiamiento y premios para acelerar la
+                    recuperación de acreencias.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Seguimiento de planes a
+                    través de Comités de Caja, Fideicomisos y Juntas de
+                    Acreedores.
+                  </li>
+                  <li>
+                    <i class="ph ph-caret-right"></i> Apoyo en el proceso de
+                    liquidación de empresas.
+                  </li>
+                </ul>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="main-footer">
-        <div class="container footer-content">
-            <p>&copy; 2026 Rialto Consultores S.A.C. Todos los derechos reservados.</p>
-            <p class="footer-credits">Desarrollado por <a href="https://tecnoinsane.net.pe" target="_blank" rel="noopener noreferrer">Tecno Insane</a></p>
-        </div>
+      <div class="container footer-content">
+        <p>
+          &copy; 2026 Rialto Consultores S.A.C. Todos los derechos reservados.
+        </p>
+        <p class="footer-credits">
+          Desarrollado por
+          <a
+            href="https://tecnoinsane.net.pe"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Tecno Insane</a
+          >
+        </p>
+      </div>
     </footer>
 
-    <a href="https://wa.me/519985420730?text=Hola,%20quisiera%20coordinar%20una%20reuni%C3%B3n%20con%20Rialto%20Consultores." 
-        class="whatsapp-float" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        aria-label="Contactar por WhatsApp">
-        <img src="assets/img/whatsapp-logo.png" alt="WhatsApp">
+    <a
+      href="https://wa.me/519985420730?text=Hola,%20quisiera%20coordinar%20una%20reuni%C3%B3n%20con%20Rialto%20Consultores."
+      class="whatsapp-float"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Contactar por WhatsApp"
+    >
+      <img src="assets/img/whatsapp-logo.png" alt="WhatsApp" />
     </a>
-    
+
     <script src="assets/js/main.js"></script>
-</body>
+  </body>
 </html>
