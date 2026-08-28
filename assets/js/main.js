@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initServicesSlider();
     initHeroSlider();
+    initAllLogosShuffle();
 
     // Capturar el nombre del archivo actual (ej: index.html o contacto.html)
     const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-inicializar los sliders para que funcionen en la nueva página cargada
             initServicesSlider();
             initHeroSlider();
+            initAllLogosShuffle();
 
             // Si el usuario navegaba en celular, cerrar el menú desplegable automáticamente
             const navMenu = document.getElementById('navMenu');
@@ -304,5 +306,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Arrancar el ciclo automático de imágenes
         window.heroSliderInterval = setInterval(nextSlide, 5000);
+    }
+
+    /**
+     * Reordena aleatoriamente los logos en la página de Clientes, asegurando 
+     * que los logos con fondo de color no queden pegados unos a otros.
+     */
+    /**
+     * Reordena aleatoriamente los logos en las distintas secciones, asegurando 
+     * que los logos con fondo de color (.jpg) no queden pegados unos a otros.
+     */
+    function initAllLogosShuffle() {
+        applyLogoShuffleRule(".clients-grid", ".client-logo-card");
+        applyLogoShuffleRule(".logo-slider-track-cylinder", ".logo-slide-large");
+    }
+
+    function applyLogoShuffleRule(containerSelector, cardSelector) {
+        const container = document.querySelector(containerSelector);
+        if (!container) return;
+
+        const cards = Array.from(container.querySelectorAll(cardSelector));
+        if (cards.length === 0) return;
+        
+        let jpgCards = [];
+        let pngCards = [];
+        
+        cards.forEach(card => {
+            const imgSrc = card.querySelector("img").getAttribute("src") || "";
+            if (imgSrc.toLowerCase().endsWith(".jpg")) {
+                jpgCards.push(card);
+            } else {
+                pngCards.push(card);
+            }
+        });
+        
+        // Función para barajar un array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        
+        // Barajamos ambos montones por separado
+        shuffleArray(jpgCards);
+        shuffleArray(pngCards);
+        
+        const finalCards = [];
+        
+        while(pngCards.length > 0 || jpgCards.length > 0) {
+            // Añadir bloques de 2 a 3 logos PNG para separar los JPG
+            const spacing = Math.floor(Math.random() * 2) + 2; // Número al azar entre 2 y 3
+            for(let i = 0; i < spacing && pngCards.length > 0; i++) {
+                finalCards.push(pngCards.pop());
+            }
+            // Añadir un logo JPG
+            if (jpgCards.length > 0) {
+                finalCards.push(jpgCards.pop());
+            }
+        }
+        
+        // Vaciar el contenedor actual y agregar los elementos con el nuevo orden intercalado aleatorio
+        container.innerHTML = "";
+        finalCards.forEach(card => {
+            // Se eliminaron las transformaciones orgánicas para mantener la simetría original
+            card.style.removeProperty('--rand-x');
+            card.style.removeProperty('--rand-y');
+            card.style.removeProperty('--rand-rot');
+            
+            container.appendChild(card);
+        });
     }
 });
