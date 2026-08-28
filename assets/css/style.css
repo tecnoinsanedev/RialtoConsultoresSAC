@@ -2,25 +2,25 @@
    1. VARIABLES DE DISEÃO GLOBAL (MOCKUP 3: PREMIUM WARM NEUTRALS)
    ========================================================================== */
 :root {
-    /* --- MODO CLARO (Mockup 3: Warm Neutrals) --- */
-    --bg-body: #FAF9F6;
+    /* --- MODO CLARO (Warm Neutrals) --- */
+    --bg-body: #faf9f6;
     /* Off-white / Cream */
     --bg-navbar: rgba(250, 249, 246, 0.98);
-    --border-color: #E5E0D8;
+    --border-color: #e5e0d8;
     /* Warm gray/beige border */
-    --text-main: #2C2C2C;
+    --text-main: #2c2c2c;
     /* Dark charcoal / Almost black */
-    --text-muted: #6B6A68;
+    --text-muted: #6b6a68;
     /* Warm muted gray */
-    --bg-section-light: #F2EFE9;
+    --bg-section-light: #f2efe9;
     /* Light beige for sections */
-    --bg-card: #FFFFFF;
+    --bg-card: #ffffff;
     /* Pure white for cards to pop */
 
     /* --- COLORES FIJOS PREMIUM (Mockup 3) --- */
-    --bg-dark-fixed: #2C2C2C;
+    --bg-dark-fixed: #2c2c2c;
     /* Charcoal for footers/dark sections */
-    --accent: #B8905B;
+    --accent: #b8905b;
     /* Soft gold/bronze for buttons and highlights */
     --white: #ffffff;
     --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -41,8 +41,6 @@
     /* Tarjetas con contraste elegante */
 }
 
-
-
 /* ==========================================================================
    2. RESET GENERAL Y CONFIGURACIÃN ESTRUCTURAL (FIX DEL FOOTER)
    ========================================================================== */
@@ -52,7 +50,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Previene desajustes por paddings internos */
+    /* Prevención de desajustes por modelo de caja (Box Model) */
 }
 
 html {
@@ -61,32 +59,34 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     color: var(--text-main);
     background-color: var(--bg-body);
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     padding-top: var(--navbar-height);
 
-    /* Flexbox en el body para obligar al footer a pegarse abajo siempre */
+    /* Configuración Flexbox para mantener el footer en la parte inferior */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 /* ACELERACIÃN POR HARDWARE PARA EL INTERCAMBIO DE LAYOUT (0ms JANK) */
 main {
     flex: 1;
-    /* El contenedor principal empuja al footer en pÃ¡ginas cortas */
+    /* El contenedor principal empuja al footer en páginas cortas */
     opacity: 1;
     will-change: opacity;
-    /* Prepara a la tarjeta grÃ¡fica para un cambio inmediato */
+    /* Prepara a la tarjeta gráfica para un cambio inmediato */
     transition: opacity 0.12s ease-in-out;
-    /* DuraciÃ³n exacta para absorber parpadeos */
+    /* Duración exacta para absorber parpadeos */
 }
 
-/* Estado de transiciÃ³n ultrarrÃ¡pido entre pÃ¡ginas */
+/* Estado de transición ultrarrápido entre páginas */
 main.layout-switching {
     opacity: 0;
 }
@@ -111,7 +111,9 @@ main.layout-switching {
     width: 100%;
     z-index: 1000;
     padding: 16px 0;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .nav-container {
@@ -138,26 +140,26 @@ main.layout-switching {
    MODIFICACIÃN: LOGOS A COLOR Y ZOOM AL PASAR EL MOUSE
    ========================================================================== */
 
-/* 1. Anulamos el efecto gris y preparamos la animaciÃ³n fluida */
+/* 1. Anulamos el efecto gris y preparamos la animación fluida */
 .logo-slide-large img {
     filter: none !important;
     -webkit-filter: grayscale(0) !important;
     opacity: 1 !important;
 
-    /* AnimaciÃ³n de 0.4 segundos con un ligero efecto de rebote premium */
+    /* Animación de 0.4 segundos con un ligero efecto de rebote premium */
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/* 2. Ampliamos la imagen al pasar el cursor por encima */
+/* Efecto de escalado en estado Hover */
 .logo-slide-large:hover img {
-    transform: scale(1.40) !important;
-    /* AmplÃ­a la imagen un 35% */
+    transform: scale(1.4) !important;
+    /* Amplía la imagen un 35% */
     cursor: pointer;
     z-index: 10;
     position: relative;
 }
 
-/* AgrupaciÃ³n derecha para alinear menÃº y botones juntos sin centrar el tema */
+/* Agrupación derecha para alinear menú y botones juntos sin centrar el tema */
 .nav-right {
     display: flex;
     align-items: center;
@@ -336,10 +338,10 @@ main.layout-switching {
 
 .services-grid {
     align-items: start;
-    /* Previene deformaciones de tamaÃ±o entre cards */
+    /* Previene deformaciones de tamaño entre cards */
 }
 
-/* Envoltura deslizable que aloja la rejilla */
+/* Contenedor principal del carrusel deslizable */
 .slider-wrapper {
     overflow-x: auto;
     overflow-y: hidden;
@@ -348,14 +350,14 @@ main.layout-switching {
     padding: 20px 0;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    /* Oculta scroll en Firefox */
+    /* Ocultamiento de barra de desplazamiento (Firefox) */
     -ms-overflow-style: none;
-    /* Oculta scroll en IE */
+    /* Ocultamiento de barra de desplazamiento (Internet Explorer) */
 }
 
 .slider-wrapper::-webkit-scrollbar {
     display: none;
-    /* Oculta scroll en Chrome/Safari */
+    /* Ocultamiento de barra de desplazamiento (Webkit: Chrome/Safari) */
 }
 
 .services-slider-grid {
@@ -364,7 +366,7 @@ main.layout-switching {
     width: max-content;
 }
 
-/* Tarjeta individual adaptada al comportamiento slider */
+/* Tarjeta de servicio optimizada para flujo de carrusel */
 .service-card-slide {
     width: 360px;
     background-color: var(--bg-card);
@@ -395,7 +397,7 @@ main.layout-switching {
     margin-bottom: 16px;
 }
 
-/* Listados internos de viÃ±etas en tarjetas de servicios */
+/* Listados internos de viñetas en tarjetas de servicios */
 .service-list {
     list-style: none;
     margin-top: 16px;
@@ -440,15 +442,13 @@ main.layout-switching {
     transition: var(--transition);
 }
 
-
-
 .slider-arrow:hover {
     background-color: var(--bg-section-light);
     color: var(--accent);
     border-color: var(--accent);
 }
 
-/* Posicionamiento mÃ¡s separado para que no colisionen visualmente con los cuadros */
+/* Posicionamiento más separado para que no colisionen visualmente con los cuadros */
 .arrow-left {
     left: -45px;
 }
@@ -458,7 +458,7 @@ main.layout-switching {
 }
 
 /* ==========================================================================
-   7. SECCIÃN Â¿QUIÃNES SOMOS? (HISTORIA, MISIÃN Y VISIÃN CON ICONO ADYACENTE)
+   7. SECCIÃN ¿QUIÃNES SOMOS? (HISTORIA, MISIÃN Y VISIÃN CON ICONO ADYACENTE)
    ========================================================================== */
 .about-section {
     padding: 100px 0;
@@ -512,9 +512,7 @@ main.layout-switching {
     transition: var(--transition);
 }
 
-
-
-/* Bloque MisiÃ³n/VisiÃ³n */
+/* Bloque Misión/Visión */
 .mv-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -612,7 +610,7 @@ main.layout-switching {
     align-items: center;
 }
 
-/* Difuminado minimalista en los extremos izquierdo y derecho */
+/* Efecto de máscara degradada en bordes laterales (Fade) */
 .logo-slider::before,
 .logo-slider::after {
     content: "";
@@ -635,7 +633,7 @@ main.layout-switching {
     background: linear-gradient(to left, var(--bg-body), transparent);
 }
 
-/* Riel interno que ejecuta la animaciÃ³n en bucle continuo */
+/* Riel interno que ejecuta la animación en bucle continuo */
 .logo-slider-track {
     display: flex;
     align-items: center;
@@ -645,7 +643,7 @@ main.layout-switching {
 
 .logo-slider-track:hover {
     animation-play-state: paused;
-    /* Pausa el movimiento al pasar el mouse */
+    /* Interrupción de animación en estado Hover (Pause) */
 }
 
 .logo-slide {
@@ -662,14 +660,13 @@ main.layout-switching {
     height: auto;
     object-fit: contain;
     filter: grayscale(100%) opacity(50%);
+    mix-blend-mode: multiply;
     transition: var(--transition);
 }
 
 .logo-slide img:hover {
     filter: grayscale(0%) opacity(100%);
 }
-
-
 
 @keyframes scrollLogos {
     0% {
@@ -680,7 +677,7 @@ main.layout-switching {
         transform: translateX(calc(-200px * 6));
     }
 
-    /* Se desplaza exactamente la mitad */
+    /* Desplazamiento calculado al 50% para bucle fluido */
 }
 
 /* ==========================================================================
@@ -858,7 +855,7 @@ main.layout-switching {
 }
 
 /* ==========================================================================
-   12b. GRILLA DE LOGOS â PÃGINA CLIENTES
+   12b. GRILLA DE LOGOS - PÁGINA CLIENTES
    ========================================================================== */
 .clients-page-section {
     padding: 60px 0 120px;
@@ -876,17 +873,16 @@ main.layout-switching {
     align-items: center;
     justify-content: center;
     padding: 28px 20px;
-    background-color: var(--bg-section-light);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    min-height: 140px;
+    background-color: transparent;
+    border: none;
+    min-height: 200px;
     overflow: visible;
+    mix-blend-mode: multiply;
     transition: var(--transition);
 }
 
 .client-logo-card:hover {
-    border-color: rgba(37, 211, 102, 0.3);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transform: translateY(-5px);
 }
 
 .client-logo-card img {
@@ -894,9 +890,9 @@ main.layout-switching {
     max-width: 100%;
     width: auto;
     height: auto;
-    max-height: 100px;
+    max-height: 160px;
     object-fit: contain;
-    filter: none;
+    mix-blend-mode: multiply;
     transition: transform 0.35s ease;
 }
 
@@ -904,15 +900,13 @@ main.layout-switching {
     transform: scale(1.12);
 }
 
-
-
 /* ==========================================================================
    13. MEDIA QUERIES (OPTIMIZACIÃN Y ADAPTACIÃN RESPONSIVA EN MÃVILES)
    ========================================================================== */
 @media (max-width: 1240px) {
     .slider-arrow {
         display: none;
-        /* En pantallas tÃ¡ctiles se prioriza el arrastre nativo manual con el dedo */
+        /* En pantallas táctiles se prioriza el arrastre nativo manual con el dedo */
     }
 
     .arrow-left {
@@ -932,7 +926,7 @@ main.layout-switching {
 
     .about-image {
         order: -1;
-        /* Posiciona la foto corporativa arriba en celulares */
+        /* Reordenamiento visual para dispositivos móviles (Mobile-First) */
     }
 
     .clients-grid {
@@ -998,7 +992,7 @@ main.layout-switching {
     .logo-slider::before,
     .logo-slider::after {
         width: 80px;
-        /* Difuminado mÃ¡s angosto en pantallas mÃ³viles */
+        /* Difuminado más angosto en pantallas móviles */
     }
 
     .logo-slide {
@@ -1051,7 +1045,6 @@ main.layout-switching {
     .client-logo-card img {
         max-height: 80px;
     }
-
 }
 
 /* ==========================================================================
@@ -1101,7 +1094,7 @@ main.layout-switching {
     align-items: center;
 }
 
-/* Sombras en los bordes para crear la ilusiÃ³n de profundidad (cilindro) */
+/* Sombras en los bordes para crear la ilusión de profundidad (cilindro) */
 .logo-slider-cylinder::before,
 .logo-slider-cylinder::after {
     content: "";
@@ -1123,17 +1116,17 @@ main.layout-switching {
     background: linear-gradient(to left, var(--bg-body) 0%, transparent 100%);
 }
 
-/* Riel que contiene las imÃ¡genes girando */
+/* Riel que contiene las imágenes girando */
 .logo-slider-track-cylinder {
     display: flex;
     align-items: center;
-    /* 300px por logo x 12 logos (6 originales + 6 duplicados) */
-    width: calc(300px * 12);
-    /* AnimaciÃ³n calculada: 30 segundos en dar la vuelta (5 seg por cada logo) */
+    /* Cálculo de anchura de pista basado en cantidad de nodos */
+    width: calc(300px * 45);
+    /* Animación calculada: 60 segundos en dar la vuelta (1 seg por cada logo) */
     animation: scrollCylinder 30s linear infinite;
 }
 
-/* Cuadro individual de cada logo en tamaÃ±o GRANDE */
+/* Cuadro individual de cada logo en tamaño GRANDE */
 .logo-slide-large {
     width: 300px;
     padding: 0 40px;
@@ -1145,21 +1138,20 @@ main.layout-switching {
 .logo-slide-large img {
     max-width: 100%;
     max-height: 90px;
-    /* TamaÃ±o grande para llamar la atenciÃ³n */
+    /* Tamaño grande para llamar la atención */
     object-fit: contain;
     filter: grayscale(100%) opacity(60%);
+    mix-blend-mode: multiply;
     transition: var(--transition);
 }
 
-/* Al pasar el mouse, el logo se pone a color y se agranda ligeramente */
+/* Interacción Hover: Restauración de color y escalado */
 .logo-slide-large img:hover {
     filter: grayscale(0%) opacity(100%);
     transform: scale(1.08);
 }
 
-
-
-/* AnimaciÃ³n infinita fluida */
+/* Animación infinita fluida */
 @keyframes scrollCylinder {
     0% {
         transform: translateX(0);
@@ -1169,10 +1161,10 @@ main.layout-switching {
         transform: translateX(calc(-300px * 6));
     }
 
-    /* Se desplaza la primera mitad exacta */
+    /* Transformación calculada para ciclo de repetición */
 }
 
-/* AdaptaciÃ³n para pantallas pequeÃ±as */
+/* Adaptación para pantallas pequeñas */
 @media (max-width: 768px) {
 
     .logo-slider-cylinder::before,
@@ -1208,29 +1200,29 @@ main.layout-switching {
    CORRECCIÃN FINAL: REDUCIR AL MÃXIMO EL ESPACIO DEBAJO DE LOS LOGOS
    ========================================================================== */
 
-/* 1. Eliminamos el espacio inferior de la secciÃ³n de logos */
+/* 1. Eliminamos el espacio inferior de la sección de logos */
 .home-logos-section,
 .logos-section {
     padding-top: 30px !important;
     padding-bottom: 0 !important;
 }
 
-/* 2. Forzamos a que la cinta no se estire hacia abajo */
+/* 2. Restricción de expansión vertical no deseada */
 .logo-slider,
 .logo-slider-cylinder {
     padding-top: 10px !important;
     padding-bottom: 20px !important;
-    /* Solo 20px de respiro antes del color oscuro del footer */
+    /* Ajuste fino de margen inferior (20px de separación) */
     margin-bottom: 0 !important;
     height: auto !important;
     align-items: center !important;
 }
 
-/* 3. Limitamos la altura mÃ¡xima de las cajas de los logos */
+/* 3. Limitamos la altura máxima de las cajas de los logos */
 .logo-slide-large,
 .logo-slide {
     height: 90px !important;
-    /* Corta cualquier espacio sobrante que tenga la imagen JPG */
+    /* Aplicación de recorte preventivo en bordes de la imagen */
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     display: flex;
@@ -1242,24 +1234,24 @@ main.layout-switching {
    ========================================================================== */
 .info-item {
     align-items: center !important;
-    /* Asegura el centrado vertical */
+    /* Alineación vertical estandarizada */
 }
 
 .info-item h4 {
     margin-bottom: 2px !important;
-    /* PequeÃ±o respiro entre el tÃ­tulo y el dato */
+    /* Pequeño respiro entre el título y el dato */
 }
 
 .info-item p {
     margin-bottom: 0 !important;
-    /* Elimina el margen invisible que empujaba el texto hacia arriba */
+    /* Eliminación de márgenes colapsables */
     line-height: 1.4 !important;
-    /* Ajusta el interlineado para que se vea mÃ¡s compacto */
+    /* Ajusta el interlineado para que se vea más compacto */
 }
 
 .info-details {
     gap: 25px !important;
-    /* Aumentamos el espacio de 24px a 40px */
+    /* Incremento de espaciado estructural (40px) */
 }
 
 /* ==========================================================================
@@ -1267,15 +1259,15 @@ main.layout-switching {
    ========================================================================== */
 .form-group textarea {
     width: 100% !important;
-    /* Fuerza a que respete el ancho del formulario */
+    /* Obligación de herencia de ancho del contenedor padre */
     max-width: 100% !important;
-    /* Evita que se desborde hacia la derecha */
+    /* Prevención de desbordamiento horizontal (Overflow X) */
     min-height: 150px;
-    /* Altura inicial por defecto */
+    /* Configuración de altura base estándar */
     resize: none !important;
-    /* Elimina la flecha manual de estiramiento */
+    /* Desactivación de propiedad Resize nativa del navegador */
     overflow-y: hidden;
-    /* Oculta la barra de scroll vertical fea */
+    /* Ocultamiento de barra de desplazamiento vertical */
     box-sizing: border-box;
 }
 
@@ -1302,17 +1294,21 @@ main.layout-switching {
     background-position: center;
     background-repeat: no-repeat;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out, transform 6s ease-out;
+    transition:
+        opacity 1.5s ease-in-out,
+        transform 6s ease-out;
     transform: scale(1.05);
     z-index: 1;
 }
 
 .hero-slider .slide::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    /* Reducimos la opacidad para que las imÃ¡genes tengan mejor resoluciÃ³n y no se vean opacas */
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 100%);
+    /* Reducimos la opacidad para que las imágenes tengan mejor resolución y no se vean opacas */
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.6) 0%,
+            rgba(0, 0, 0, 0.15) 100%);
 }
 
 .hero-slider .slide.active {
@@ -1329,8 +1325,10 @@ main.layout-switching {
 }
 
 @media (max-width: 768px) {
-            .hero-slider .slide::after {
-        background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
+    .hero-slider .slide::after {
+        background: linear-gradient(to top,
+                rgba(15, 23, 42, 0.95) 0%,
+                rgba(15, 23, 42, 0.8) 100%);
     }
 }
 
@@ -1357,148 +1355,9 @@ main.layout-switching {
     padding: 40px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    gap: 30px;
-}
-
-.consultor-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-@media (min-width: 992px) {
-    .consultor-card {
-        flex-direction: row;
-        align-items: flex-start;
-        padding: 50px;
-        gap: 50px;
-    }
-}
-
-.consultor-img-wrapper {
-    flex: 0 0 200px;
-    height: 200px;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 50%;
-    border: 4px solid var(--bg-light);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.consultor-photo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-}
-
-.consultor-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.consultor-info h3 {
-    color: var(--text-main);
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 12px;
-    display: inline-block;
-    align-self: flex-start;
-}
-
-.consultor-bio p {
-    color: #4a5568;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-.consultor-email {
-    margin-top: 15px;
-    font-weight: 600;
-    color: var(--accent);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.05rem;
-}
-
-.consultor-email i {
-    font-size: 1.3rem;
-}
-
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-opacity: 0;
-transition: opacity 1.5s ease-in-out,
-transform 6s ease-out;
-transform: scale(1.05);
-z-index: 1;
-}
-
-.hero-slider .slide::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    /* Reducimos la opacidad para que las imÃ¡genes tengan mejor resoluciÃ³n y no se vean opacas */
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 100%);
-}
-
-.hero-slider .slide.active {
-    opacity: 1;
-    transform: scale(1);
-    z-index: 2;
-}
-
-.hero-slider .overlay-corporativo {
-    position: relative;
-    z-index: 3;
-    width: 100%;
-    padding: 100px 0;
-}
-
-@media (max-width: 768px) {
-            .hero-slider .slide::after {
-        background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 100%);
-    }
-}
-
-/* ==========================================================================
-   SECCIÓN DE CONSULTORES
-   ========================================================================== */
-.consultores-section {
-    background-color: var(--bg-light);
-}
-
-.consultores-list {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    margin-top: 40px;
-}
-
-.consultor-card {
-    display: flex;
-    flex-direction: column;
-    background: var(--white);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
-    padding: 40px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     gap: 30px;
 }
 
