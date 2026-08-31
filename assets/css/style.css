@@ -136,29 +136,6 @@ main.layout-switching {
     font-weight: 400;
 }
 
-/* ==========================================================================
-   MODIFICACIÃN: LOGOS A COLOR Y ZOOM AL PASAR EL MOUSE
-   ========================================================================== */
-
-/* 1. Anulamos el efecto gris y preparamos la animación fluida */
-.logo-slide-large img {
-    filter: none !important;
-    -webkit-filter: grayscale(0) !important;
-    opacity: 1 !important;
-
-    /* Animación de 0.4 segundos con un ligero efecto de rebote premium */
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-/* Efecto de escalado en estado Hover */
-.logo-slide-large:hover img {
-    transform: scale(1.4) !important;
-    /* Amplía la imagen un 35% */
-    cursor: pointer;
-    z-index: 10;
-    position: relative;
-}
-
 /* Agrupación derecha para alinear menú y botones juntos sin centrar el tema */
 .nav-right {
     display: flex;
@@ -1068,20 +1045,21 @@ main.layout-switching {
 }
 
 /* ==========================================================================
-   NUEVO: CARRUSEL DE LOGOS TAMAÃO GRANDE (INICIO / EFECTO CILINDRO)
+   CARRUSEL DE LOGOS (INICIO / EFECTO CILINDRO INFINITO RESPONSIVO)
    ========================================================================== */
-.home-logos-section {
+.home-logos-section,
+.logos-section {
     background-color: var(--bg-body);
-    padding: 60px 0;
+    padding: 25px 0 10px !important;
     border-top: 1px solid var(--border-color);
     overflow: hidden;
 }
 
 .home-logos-title {
     text-align: center;
-    font-size: 1.35rem;
+    font-size: 1.25rem;
     color: var(--text-muted);
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -1093,6 +1071,9 @@ main.layout-switching {
     overflow: hidden;
     display: flex;
     align-items: center;
+    padding: 5px 0 15px !important;
+    margin-bottom: 0 !important;
+    height: auto !important;
 }
 
 /* Sombras en los bordes para crear la ilusión de profundidad (cilindro) */
@@ -1101,7 +1082,7 @@ main.layout-switching {
     content: "";
     position: absolute;
     top: 0;
-    width: 200px;
+    width: 150px;
     height: 100%;
     z-index: 2;
     pointer-events: none;
@@ -1121,109 +1102,125 @@ main.layout-switching {
 .logo-slider-track-cylinder {
     display: flex;
     align-items: center;
-    /* Cálculo de anchura de pista basado en cantidad de nodos */
-    width: calc(300px * 45);
-    /* Animación calculada: 60 segundos en dar la vuelta (1 seg por cada logo) */
-    animation: scrollCylinder 30s linear infinite;
+    width: max-content !important;
+    will-change: transform;
+    animation: scrollCylinder 55s linear infinite;
 }
 
-/* Cuadro individual de cada logo en tamaño GRANDE */
+.logo-slider-cylinder:hover .logo-slider-track-cylinder {
+    animation-play-state: paused;
+}
+
+/* Cuadro individual de cada logo en tamaño GRANDE y PROMINENTE */
 .logo-slide-large {
-    width: 300px;
-    padding: 0 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex: 0 0 250px !important;
+    width: 250px !important;
+    height: 110px !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
 }
 
 .logo-slide-large img {
-    max-width: 100%;
-    max-height: 90px;
-    /* Tamaño grande para llamar la atención */
-    object-fit: contain;
-    filter: grayscale(100%) opacity(60%);
-    mix-blend-mode: multiply;
-    transition: var(--transition);
+    max-width: 220px !important;
+    max-height: 95px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    filter: none !important;
+    -webkit-filter: grayscale(0) !important;
+    opacity: 1 !important;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-/* Interacción Hover: Restauración de color y escalado */
-.logo-slide-large img:hover {
-    filter: grayscale(0%) opacity(100%);
-    transform: scale(1.08);
+/* Interacción Hover: Escalado suave en computadoras */
+.logo-slide-large:hover img {
+    transform: scale(1.18) !important;
+    cursor: pointer;
+    z-index: 10;
+    position: relative;
 }
 
-/* Animación infinita fluida */
+/* Animación infinita fluida basada en 50% de traslación */
 @keyframes scrollCylinder {
     0% {
         transform: translateX(0);
     }
-
     100% {
-        transform: translateX(calc(-300px * 6));
+        transform: translateX(-50%);
     }
-
-    /* Transformación calculada para ciclo de repetición */
 }
 
-/* Adaptación para pantallas pequeñas */
+/* Adaptación para pantallas medianas / Tablets */
 @media (max-width: 768px) {
+    .home-logos-section,
+    .logos-section {
+        padding-top: 20px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .home-logos-title {
+        font-size: 1.05rem;
+        margin-bottom: 15px;
+        padding: 0 15px;
+    }
 
     .logo-slider-cylinder::before,
     .logo-slider-cylinder::after {
-        width: 60px;
+        width: 45px;
     }
 
     .logo-slide-large {
-        width: 180px;
-        padding: 0 20px;
+        flex: 0 0 170px !important;
+        width: 170px !important;
+        height: 85px !important;
+        padding: 0 10px !important;
     }
 
     .logo-slide-large img {
-        max-height: 60px;
+        max-width: 150px !important;
+        max-height: 65px !important;
     }
 
     .logo-slider-track-cylinder {
-        width: calc(180px * 12);
-    }
-
-    @keyframes scrollCylinder {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(calc(-180px * 6));
-        }
+        animation: scrollCylinder 45s linear infinite;
     }
 }
 
-/* ==========================================================================
-   CORRECCIÃN FINAL: REDUCIR AL MÃXIMO EL ESPACIO DEBAJO DE LOS LOGOS
-   ========================================================================== */
+/* Adaptación para celulares pequeños */
+@media (max-width: 480px) {
+    .home-logos-title {
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+    }
 
-/* 1. Eliminamos el espacio inferior de la sección de logos */
-.home-logos-section,
-.logos-section {
-    padding-top: 30px !important;
-    padding-bottom: 0 !important;
+    .logo-slider-cylinder::before,
+    .logo-slider-cylinder::after {
+        width: 30px;
+    }
+
+    .logo-slide-large {
+        flex: 0 0 150px !important;
+        width: 150px !important;
+        height: 75px !important;
+        padding: 0 8px !important;
+    }
+
+    .logo-slide-large img {
+        max-width: 134px !important;
+        max-height: 55px !important;
+    }
+
+    .logo-slider-track-cylinder {
+        animation: scrollCylinder 38s linear infinite;
+    }
 }
 
-/* 2. Restricción de expansión vertical no deseada */
-.logo-slider,
-.logo-slider-cylinder {
-    padding-top: 10px !important;
-    padding-bottom: 20px !important;
-    /* Ajuste fino de margen inferior (20px de separación) */
-    margin-bottom: 0 !important;
-    height: auto !important;
-    align-items: center !important;
-}
-
-/* 3. Limitamos la altura máxima de las cajas de los logos */
-.logo-slide-large,
+/* 3. Limitamos la altura de las cajas de logos genéricos */
 .logo-slide {
-    height: 90px !important;
-    /* Aplicación de recorte preventivo en bordes de la imagen */
+    height: 90px;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     display: flex;
@@ -1283,6 +1280,9 @@ main.layout-switching {
     align-items: center;
     overflow: hidden;
     background-color: var(--bg-dark-fixed);
+    padding-top: 90px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
 }
 
 .hero-slider .slide {

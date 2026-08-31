@@ -317,22 +317,25 @@ document.addEventListener('DOMContentLoaded', () => {
      * que los logos con fondo de color (.jpg) no queden pegados unos a otros.
      */
     function initAllLogosShuffle() {
-        applyLogoShuffleRule(".clients-grid", ".client-logo-card");
-        applyLogoShuffleRule(".logo-slider-track-cylinder", ".logo-slide-large");
+        applyLogoShuffleRule(".clients-grid", ".client-logo-card", false);
+        applyLogoShuffleRule(".logo-slider-track-cylinder", ".logo-slide-large", true);
     }
 
-    function applyLogoShuffleRule(containerSelector, cardSelector) {
+    function applyLogoShuffleRule(containerSelector, cardSelector, cloneForInfinite = false) {
         const container = document.querySelector(containerSelector);
         if (!container) return;
 
-        const cards = Array.from(container.querySelectorAll(cardSelector));
+        // Si ya hay clones previos de una ejecución anterior, solo tomamos las tarjetas originales
+        const rawCards = Array.from(container.querySelectorAll(cardSelector));
+        const cards = rawCards.filter(card => !card.hasAttribute('data-clone'));
         if (cards.length === 0) return;
         
         let jpgCards = [];
         let pngCards = [];
         
         cards.forEach(card => {
-            const imgSrc = card.querySelector("img").getAttribute("src") || "";
+            const img = card.querySelector("img");
+            const imgSrc = img ? (img.getAttribute("src") || "") : "";
             if (imgSrc.toLowerCase().endsWith(".jpg")) {
                 jpgCards.push(card);
             } else {
@@ -369,12 +372,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Vaciar el contenedor actual y agregar los elementos con el nuevo orden intercalado aleatorio
         container.innerHTML = "";
         finalCards.forEach(card => {
-            // Se eliminaron las transformaciones orgánicas para mantener la simetría original
+            card.removeAttribute('data-clone');
             card.style.removeProperty('--rand-x');
             card.style.removeProperty('--rand-y');
             card.style.removeProperty('--rand-rot');
-            
             container.appendChild(card);
         });
+
+        // Si es carrusel cilíndrico infinito, clonamos el set completo para permitir un bucle suave del 0% al -50%
+        if (cloneForInfinite) {
+            finalCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                clone.setAttribute('data-clone', 'true');
+                container.appendChild(clone);
+            });
+        }
     }
 });
